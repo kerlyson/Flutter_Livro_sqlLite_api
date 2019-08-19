@@ -38,7 +38,7 @@ class Livro {
 
   @override
   String toString() {
-  return "id: ${id}, titulo: ${titulo}, autor: ${autor}, ehNacional: ${ehNacional}, preco: ${preco}, disponibilidade: ${disponibilidade}";
+  return "id: $id, titulo: $titulo, autor: $autor, ehNacional: $ehNacional, preco: $preco, disponibilidade: $disponibilidade";
   }
 
 }

@@ -5,7 +5,7 @@ enum TipoDisponibilidade {
 
 class EnumString {
 
-  // TODO: funcao para retornar todos os values as string array,
+  //TODO: funcao para retornar todos os values as string array,
 
   static String getDisponibilidade(TipoDisponibilidade disponibilidade) {
     switch (disponibilidade) {

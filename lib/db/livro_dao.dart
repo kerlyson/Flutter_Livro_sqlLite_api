@@ -7,7 +7,7 @@ class LivroDao {
   inserir(Livro livro) async {
     final db =  await _db.database;
     final res = await db.insert("livro", livro.toJson());
-    print('insert: ${res}');
+    print('insert: $res');
     return res;
   }
 
