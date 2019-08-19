@@ -1,3 +1,5 @@
+import 'package:atividade_03/db/livro_dao.dart';
+import 'package:atividade_03/models/livro.dart';
 import 'package:atividade_03/models/tipo_disponibilidade.dart';
 import 'package:flutter/material.dart';
 
@@ -11,13 +13,18 @@ class _LivroFormState extends State<LivroForm> {
 
   final _formKey = GlobalKey<FormState>();
 
-
-  final _disponibilidades = TipoDisponibilidade.values;
+  final LivroDao dao = LivroDao();
   TipoDisponibilidade _valorAtualDisponibilidades;
   bool _ehNacional = true;
 
+
+
   @override
   Widget build(BuildContext context) {
+
+    // dao.inserir(Livro(titulo: 'Dart e Flutter', autor: 'João Sousa',disponibilidade: TipoDisponibilidade.venda, preco: 39.0, ehNacional: true));
+    dao.getlivros();
+
     return Form(
       key: _formKey,
       child: Column(

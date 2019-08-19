@@ -1,35 +1,44 @@
-import 'package:atividade_03/models/tipo_disponibilidade.dart';
+import "package:atividade_03/models/tipo_disponibilidade.dart";
 
 class Livro {
-  int _id;
-  String _titulo;
-  String _autor;
-  double _preco;
-  bool _ehNacional;
-  TipoDisponibilidade _disponibilidade;
+  int id;
+  String titulo;
+  String autor;
+  double preco;
+  bool ehNacional;
+  TipoDisponibilidade disponibilidade;
 
-// TODO: substituir por paramentros opcionais
-// id pode comecar com null
-// disponibilidade eh salva como string... converter para o valor enum quando receber string 
-  Livro(this._id, this._titulo, this._autor, this._preco, this._ehNacional,
-      this._disponibilidade);
+  Livro({this.id, this.titulo, this.autor, this.preco, this.ehNacional,
+      this.disponibilidade});
+  Livro.fromBD(int id, String titulo, String autor, double preco,
+      bool ehNacional, String disponibilidade) {
+    this.id = id;
+    this.titulo = titulo;
+    this.autor = autor;
+    this.preco = preco;
+    this.ehNacional = ehNacional;
+    this.disponibilidade = EnumString.getDisponibilidadeValue(disponibilidade);
+  }
 
-  int get id => this._id;
-  set id(int id) => this._id = id;
+  Map<String, dynamic> toJson() {
+    return {
+      "id": id,
+      "titulo": titulo,
+      "autor": autor,
+      "preco": preco,
+      "ehNacional": ehNacional,
+      "disponibilidade": EnumString.getDisponibilidade(disponibilidade)
+    };
+  }
 
-  String get titulo => this._titulo;
-  set titulo(String titulo) => this._titulo = titulo;
+  factory Livro.fromMap(Map<String, dynamic> json) {
+    return new Livro.fromBD(json["id"], json["titulo"], json["autor"],
+        json["preco"], json["ehNacional"] == 1, json["disponibilidade"]);
+  }
 
-  String get autor => this._autor;
-  set autor(String autor) => this._autor = autor;
+  @override
+  String toString() {
+  return "id: ${id}, titulo: ${titulo}, autor: ${autor}, ehNacional: ${ehNacional}, preco: ${preco}, disponibilidade: ${disponibilidade}";
+  }
 
-  double get preco => this._preco;
-  set preco(double preco) => this._preco = preco;
-
-  bool get ehNacional => this._ehNacional;
-  set ehNacional(bool ehNacional) => this._ehNacional = ehNacional;
-  
-  TipoDisponibilidade get disponibilidade => this._disponibilidade;
-  set disponibilidade(TipoDisponibilidade disponibilidade) =>
-      this._disponibilidade = disponibilidade;
 }
