@@ -21,63 +21,61 @@ class _LivroFormState extends State<LivroForm> {
 
   @override
   Widget build(BuildContext context) {
-    // dao.inserir(Livro(titulo: 'Dart e Flutter', autor: 'João Sousa',disponibilidade: TipoDisponibilidade.venda, preco: 39.0, ehNacional: true));
-    dao.getlivros();
-   this._livro.ehNacional = this._ehNacional; // inicia com o mesmo valor
-    return SingleChildScrollView(
-      child: Form(
-        key: _formKey,
-        child: Column(
-          children: <Widget>[
-            TextFormField(
-              decoration: InputDecoration(labelText: 'Título'),
-              onSaved: (value) {
-                this._livro.titulo = value;
-              },
-              validator: _campoObg,
-            ),
-            TextFormField(
-              decoration: InputDecoration(labelText: 'Autor'),
-              onSaved: (value){
-                this._livro.autor = value;
-              },
-              validator: _campoObg,
-
-            ),
-            TextFormField(
-              decoration: InputDecoration(labelText: 'Preço'),
-              keyboardType: TextInputType.number,
-              onSaved: (value) {
-                this._livro.preco = double.parse(value);
-              },
-              validator: _campoObg,
-
-            ),
-            Text('Selecione a disponibilidade do livro:'),
-            ..._disponibilidadesRadioButton(),
-            _ehNacionalCheckBox(),
-            Padding(
-            padding: const EdgeInsets.symmetric(vertical: 16.0),
-            child: RaisedButton(
-              onPressed: () {
-                if (_formKey.currentState.validate()) {
-                  _formKey.currentState.save();
-                  print(_livro.toString());
-                  var res = dao.inserir(_livro);
-
-                }
-              },
-              child: Text('Salvar'),
-            ),
+    this._livro.ehNacional = this._ehNacional; // inicia com o mesmo valor
+    return Scaffold(
+      appBar: AppBar(),
+      body: SingleChildScrollView(
+        child: Form(
+          key: _formKey,
+          child: Column(
+            children: <Widget>[
+              TextFormField(
+                decoration: InputDecoration(labelText: 'Título'),
+                onSaved: (value) {
+                  this._livro.titulo = value;
+                },
+                validator: _campoObg,
+              ),
+              TextFormField(
+                decoration: InputDecoration(labelText: 'Autor'),
+                onSaved: (value) {
+                  this._livro.autor = value;
+                },
+                validator: _campoObg,
+              ),
+              TextFormField(
+                decoration: InputDecoration(labelText: 'Preço'),
+                keyboardType: TextInputType.number,
+                onSaved: (value) {
+                  this._livro.preco = double.parse(value);
+                },
+                validator: _campoObg,
+              ),
+              Text('Selecione a disponibilidade do livro:'),
+              ..._disponibilidadesRadioButton(),
+              _ehNacionalCheckBox(),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 16.0),
+                child: RaisedButton(
+                  onPressed: () {
+                    if (_formKey.currentState.validate()) {
+                      _formKey.currentState.save();
+                      print(_livro.toString());
+                      var res = dao.inserir(_livro);
+                    }
+                  },
+                  child: Text('Salvar'),
+                ),
+              ),
+            ],
           ),
-          ],
         ),
-
-    ));
+      ),
+    );
   }
 
-  String _campoObg(value){
-    if(value.isEmpty) return 'Campo Obrigatorio';
+  String _campoObg(value) {
+    if (value.isEmpty) return 'Campo Obrigatorio';
     return null;
   }
 

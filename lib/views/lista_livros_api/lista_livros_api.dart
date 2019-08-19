@@ -9,8 +9,8 @@ class ListaLivrosApi extends StatefulWidget {
 class _ListaLivrosApiState extends State<ListaLivrosApi> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-    
+    return Scaffold(
+      appBar: AppBar(),
     );
   }
 }

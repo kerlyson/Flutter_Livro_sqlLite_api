@@ -12,12 +12,12 @@ class _ListaLivrosLocalState extends State<ListaLivrosLocal> {
   LivroDao _dao = new LivroDao();
   @override
   Widget build(BuildContext context) {
-
-
-    return  FutureBuilder(
+    return Scaffold(
+      appBar: AppBar(),
+      body: FutureBuilder(
         future: _dao.getlivros(),
         builder: (context, snapshot) {
-          if (snapshot.hasData) {
+          if (snapshot.hasData && snapshot.connectionState == ConnectionState.done) {
             return ListView.builder(
               itemCount: snapshot.data.length,
               itemBuilder: (context, index) {
@@ -31,8 +31,7 @@ class _ListaLivrosLocalState extends State<ListaLivrosLocal> {
             );
           }
         },
+      ),
     );
   }
-
- 
 }
