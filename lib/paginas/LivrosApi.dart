@@ -14,16 +14,26 @@ class _ListaLivrosApiState extends State<ListaLivrosApi> {
   List<Livro> listaDeLivros = new List<Livro>();
   @override
   Widget build(BuildContext context) {
-    obtemLivros();
-    return ListView.builder(
-      itemCount: listaDeLivros.length,
+   
+    return FutureBuilder(
+      future: _obtemLivros(),
+      builder: (context, snapshot) {
+        if (snapshot.hasData &&
+            snapshot.connectionState == ConnectionState.done) {
+          return ListView.builder(
+      itemCount: snapshot.data.length,
       itemBuilder: (context, index) {
-        return CardLivro(listaDeLivros[index]);
+        return CardLivro(snapshot.data[index]);
+      },
+    );
+        } else {
+          return Container(child: Text('CARREGANDO...'),);
+        }
       },
     );
   }
 
-  obtemLivros() async {
+  _obtemLivros() async {
     List<Livro> listaObjetosdeLivros = new List<Livro>();
     String url = "https://api.myjson.com/bins/1fpyfn";
     http.Response resposta = await http.get(url);
@@ -34,6 +44,6 @@ class _ListaLivrosApiState extends State<ListaLivrosApi> {
         listaObjetosdeLivros.add(livro);
       }
     }
-    this.listaDeLivros = listaObjetosdeLivros;
+    return listaObjetosdeLivros;
   }
 }

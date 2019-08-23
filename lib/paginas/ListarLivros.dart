@@ -22,7 +22,7 @@ class _ListarLivrosState extends State<ListarLivros> {
             },
           );
         } else {
-          return Container();
+          return Container(child: Text('CARREGANDO...'),);
         }
       },
     );
