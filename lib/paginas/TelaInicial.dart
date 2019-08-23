@@ -11,19 +11,21 @@ class TelaInicial extends StatefulWidget {
 
 class _TelaInicialState extends State<TelaInicial> {
   int _index = 0;
-  List<Widget> _telas = [
-    Formulario(),
-    ListaLivrosApi(),
-    ListarLivros(),
-    Sobre(),
-  ];
+
   @override
   Widget build(BuildContext context) {
+    List<_Tela> _telas = [
+        _Tela('Cadastro  Local',  Formulario(_onItemTapped)),
+        _Tela('Livros na Nuvem',  ListaLivrosApi()),
+        _Tela('Livros Locais',  ListarLivros(),),
+        _Tela('Sobre',  ListaLivrosApi()),
+
+      ];
     return Scaffold(
       appBar: AppBar(
-        title: Text('Pagina Inicial', style: TextStyle(color: Colors.white)),
+        title: Text(_telas[_index].titulo, style: TextStyle(color: Colors.white)),
       ),
-      body: _telas.elementAt(_index),
+      body: _telas[_index].widget,
       bottomNavigationBar: _bottomBar(),
     );
   }
@@ -31,11 +33,12 @@ class _TelaInicialState extends State<TelaInicial> {
   BottomNavigationBar _bottomBar() {
     return BottomNavigationBar(
       iconSize: 20,
-       type: BottomNavigationBarType.fixed,
+      type: BottomNavigationBarType.fixed,
       items: <BottomNavigationBarItem>[
         BottomNavigationBarItem(icon: Icon(Icons.home), title: Text('Inicio')),
-        BottomNavigationBarItem(icon: Icon(Icons.http), title: Text('Lista Api')),
-        BottomNavigationBarItem(icon: Icon(Icons.library_books), title: Text('Lista BD')),
+        BottomNavigationBarItem(
+            icon: Icon(Icons.http), title: Text('Lista Api')),
+        BottomNavigationBarItem(    icon: Icon(Icons.library_books), title: Text('Lista BD')),
         BottomNavigationBarItem(icon: Icon(Icons.info), title: Text('Sobre')),
       ],
       currentIndex: _index,
@@ -47,6 +50,14 @@ class _TelaInicialState extends State<TelaInicial> {
   void _onItemTapped(int index) {
     setState(() {
       this._index = index;
+      print(_index);
     });
   }
+}
+
+class _Tela {
+  String titulo; // titulo na AppBar
+  Widget widget; // corpo no Scaffold
+
+  _Tela(this.titulo, this.widget);
 }

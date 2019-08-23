@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 import '../db/livro_dao.dart';
@@ -6,14 +5,15 @@ import '../modelos/livro.dart';
 import '../modelos/tipo_disponibilidade.dart';
 
 class Formulario extends StatefulWidget {
+  Function(int) callback;
+  Formulario(this.callback);
   @override
   _FormularioState createState() => _FormularioState();
 }
 
 class _FormularioState extends State<Formulario> {
-  
   final _formKey = GlobalKey<FormState>();
-  
+
   final LivroDao dao = LivroDao();
   TipoDisponibilidade _valorAtualDisponibilidades = TipoDisponibilidade.venda;
   bool _ehNacional = true;
@@ -22,10 +22,15 @@ class _FormularioState extends State<Formulario> {
 
   @override
   Widget build(BuildContext context) {
+    _livro.disponibilidade = _valorAtualDisponibilidades;
     return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.all(10.0),
         child: Form(
           key: _formKey,
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+
             children: <Widget>[
               TextFormField(
                 decoration: InputDecoration(labelText: 'Título'),
@@ -49,28 +54,40 @@ class _FormularioState extends State<Formulario> {
                 },
                 validator: _campoObg,
               ),
-              Text('Selecione a disponibilidade do livro:'),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text('Selecione a disponibilidade do livro:'),
+              ),
               ..._disponibilidadesRadioButton(),
               _ehNacionalCheckBox(),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 16.0),
-                child: RaisedButton(
-                  onPressed: () {
-                    if (_formKey.currentState.validate()) {
-                      _formKey.currentState.save();
-                      print(_livro.toString());
-                      var res = dao.inserir(_livro);
-                    }
-                  },
-                  child: Text('Salvar'),
-                ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 16.0),
+                    child: RaisedButton(
+                      onPressed: () {
+                        if (_formKey.currentState.validate()) {
+                          _formKey.currentState.save();
+                          print(_livro.toString());
+                          dao.inserir(_livro);
+                            widget.callback(2);
+                        }
+                      },
+                      child: Text('Salvar'),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
         ),
-      );
+      ),
+    );
   }
-   String _campoObg(value) {
+
+  String _campoObg(value) {
     if (value.isEmpty) return 'Campo Obrigatorio';
     return null;
   }

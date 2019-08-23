@@ -7,7 +7,7 @@ class LivroDao {
     final db = await _db.database;
     final res = await db.insert("livro", livro.toJson());
     print('insert: $res');
-    return res;
+    // return res;
   }
 
   Future<List<Livro>> getlivros() async {
