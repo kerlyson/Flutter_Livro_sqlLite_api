@@ -1,6 +1,5 @@
 import 'data_base.dart';
-import 'package:livraria_brasil/modelos/livro.dart';
-
+import '../modelos/livro.dart';
 class LivroDao {
   final _db = DataBase.db;
 

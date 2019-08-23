@@ -1,4 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:livraria_brasil/Livraria.dart';
+import './Livraria.dart';
 
 void main() => runApp(Livraria());

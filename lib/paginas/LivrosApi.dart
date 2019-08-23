@@ -1,7 +1,8 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:livraria_brasil/modelos/livro.dart';
 import 'package:http/http.dart' as http;
+
+import '../modelos/livro.dart';
 
 class ListaLivrosApi extends StatefulWidget {
   @override

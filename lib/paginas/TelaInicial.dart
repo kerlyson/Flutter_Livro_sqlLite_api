@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:livraria_brasil/paginas/LivrosApi.dart';
-import 'package:livraria_brasil/paginas/formulario.dart';
-import 'package:livraria_brasil/paginas/sobre.dart';
+import './formulario.dart';
+import './sobre.dart';
+import './LivrosApi.dart';
 
 class TelaInicial extends StatefulWidget {
   @override

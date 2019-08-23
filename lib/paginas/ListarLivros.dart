@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:livraria_brasil/db/livro_dao.dart';
+import '../db/livro_dao.dart';
 
 class ListarLivros extends StatefulWidget {
   @override

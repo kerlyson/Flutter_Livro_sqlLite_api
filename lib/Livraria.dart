@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:livraria_brasil/paginas/TelaBase.dart';
-import 'package:livraria_brasil/paginas/TelaInicial.dart';
+
+import 'paginas/TelaBase.dart';
+
 
 class Livraria extends StatelessWidget {
   @override

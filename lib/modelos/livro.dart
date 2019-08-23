@@ -1,4 +1,5 @@
-import "package:livraria_brasil/modelos/tipo_disponibilidade.dart";
+
+import 'tipo_disponibilidade.dart';
 
 class Livro {
   int id;

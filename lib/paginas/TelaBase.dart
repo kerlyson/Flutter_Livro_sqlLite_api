@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:livraria_brasil/paginas/TelaInicial.dart';
-
+import './TelaInicial.dart';
 class Base extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
