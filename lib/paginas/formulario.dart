@@ -72,7 +72,8 @@ class _FormularioState extends State<Formulario> {
                           _formKey.currentState.save();
                           print(_livro.toString());
                           dao.inserir(_livro);
-                            widget.callback(2);
+                          widget.callback(2);
+                          Scaffold.of(context).showSnackBar(SnackBar(content: Text('Livro inserido!')));
                         }
                       },
                       child: Text('Salvar'),

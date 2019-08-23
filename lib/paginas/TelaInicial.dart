@@ -18,7 +18,7 @@ class _TelaInicialState extends State<TelaInicial> {
         _Tela('Cadastro  Local',  Formulario(_onItemTapped)),
         _Tela('Livros na Nuvem',  ListaLivrosApi()),
         _Tela('Livros Locais',  ListarLivros(),),
-        _Tela('Sobre',  ListaLivrosApi()),
+        _Tela('Sobre',  Sobre()),
 
       ];
     return Scaffold(

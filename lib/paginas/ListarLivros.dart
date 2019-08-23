@@ -15,14 +15,17 @@ class _ListarLivrosState extends State<ListarLivros> {
       builder: (context, snapshot) {
         if (snapshot.hasData &&
             snapshot.connectionState == ConnectionState.done) {
-          return ListView.builder(
-            itemCount: snapshot.data.length,
-            itemBuilder: (context, index) {
-              return CardLivro(snapshot.data[index]);
-            },
+          return Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ListView.builder(
+              itemCount: snapshot.data.length,
+              itemBuilder: (context, index) {
+                return CardLivro(snapshot.data[index]);
+              },
+            ),
           );
         } else {
-          return Container(child: Text('CARREGANDO...'),);
+          return Center(child:CircularProgressIndicator(),);
         }
       },
     );

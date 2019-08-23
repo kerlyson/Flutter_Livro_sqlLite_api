@@ -14,20 +14,24 @@ class _ListaLivrosApiState extends State<ListaLivrosApi> {
   List<Livro> listaDeLivros = new List<Livro>();
   @override
   Widget build(BuildContext context) {
-   
     return FutureBuilder(
       future: _obtemLivros(),
       builder: (context, snapshot) {
         if (snapshot.hasData &&
             snapshot.connectionState == ConnectionState.done) {
-          return ListView.builder(
-      itemCount: snapshot.data.length,
-      itemBuilder: (context, index) {
-        return CardLivro(snapshot.data[index]);
-      },
-    );
+          return Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ListView.builder(
+              itemCount: snapshot.data.length,
+              itemBuilder: (context, index) {
+                return CardLivro(snapshot.data[index]);
+              },
+            ),
+          );
         } else {
-          return Container(child: Text('CARREGANDO...'),);
+          return Center(
+            child: CircularProgressIndicator(),
+          );
         }
       },
     );

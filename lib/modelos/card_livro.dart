@@ -10,10 +10,11 @@ class CardLivro extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      elevation: 4,
       child: Padding(
         padding: EdgeInsets.all(10),
         child: Text(
-          'Titulo: ' +
+          'Título: ' +
               _livro.titulo +
               '\nAutor: ' +
               _livro.autor +
