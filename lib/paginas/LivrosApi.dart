@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 import '../modelos/livro.dart';
+import '../modelos/card_livro.dart';
 
 class ListaLivrosApi extends StatefulWidget {
   @override
@@ -14,17 +15,12 @@ class _ListaLivrosApiState extends State<ListaLivrosApi> {
   @override
   Widget build(BuildContext context) {
     obtemLivros();
-    return Scaffold(
-        body: ListView.builder(
-            itemCount: listaDeLivros.length,
-            itemBuilder: (context, index) {
-              return Card(
-                  child: Text('Titulo: ' + listaDeLivros[index].titulo +
-                      '\nAutor: ' + listaDeLivros[index].autor +
-                      '\nPreço: ' + listaDeLivros[index].preco.toString() +
-                      '\nNacional: ' + (listaDeLivros[index].ehNacional ? 'Sim' : 'Não') +
-                      '\nDisponibilidade: ' + listaDeLivros[index].disponibilidade.toString()));
-            }));
+    return ListView.builder(
+      itemCount: listaDeLivros.length,
+      itemBuilder: (context, index) {
+        return CardLivro(listaDeLivros[index]);
+      },
+    );
   }
 
   obtemLivros() async {
