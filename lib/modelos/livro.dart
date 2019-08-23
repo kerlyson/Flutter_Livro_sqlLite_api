@@ -1,4 +1,4 @@
-import "package:atividade_03/models/tipo_disponibilidade.dart";
+import "package:livraria_brasil/modelos/tipo_disponibilidade.dart";
 
 class Livro {
   int id;
@@ -8,7 +8,12 @@ class Livro {
   bool ehNacional;
   TipoDisponibilidade disponibilidade;
 
-  Livro({this.id, this.titulo, this.autor, this.preco, this.ehNacional,
+  Livro(
+      {this.id,
+      this.titulo,
+      this.autor,
+      this.preco,
+      this.ehNacional,
       this.disponibilidade});
   Livro.fromBD(int id, String titulo, String autor, double preco,
       bool ehNacional, String disponibilidade) {
@@ -31,6 +36,14 @@ class Livro {
     };
   }
 
+  Livro.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    this.titulo = json['titulo'];
+    this.autor = json['autor'];
+    this.preco = json['preco'];
+    this.ehNacional = json['ehNacional'];
+    this.disponibilidade = EnumString.getDisponibilidadeValue(json['disponibilidade']);
+  }
   factory Livro.fromMap(Map<String, dynamic> json) {
     return new Livro.fromBD(json["id"], json["titulo"], json["autor"],
         json["preco"], json["ehNacional"] == 1, json["disponibilidade"]);
@@ -38,7 +51,6 @@ class Livro {
 
   @override
   String toString() {
-  return "id: $id, titulo: $titulo, autor: $autor, ehNacional: $ehNacional, preco: $preco, disponibilidade: $disponibilidade";
+    return "id: $id, titulo: $titulo, autor: $autor, ehNacional: $ehNacional, preco: $preco, disponibilidade: $disponibilidade";
   }
-
 }

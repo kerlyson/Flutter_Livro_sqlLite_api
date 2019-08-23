@@ -1,18 +1,17 @@
-import 'package:atividade_03/db/livro_dao.dart';
-import 'package:atividade_03/models/livro.dart';
-//import 'package:atividade_03/models/livro.dart';
-import 'package:atividade_03/models/tipo_disponibilidade.dart';
 import 'package:flutter/material.dart';
+import 'package:livraria_brasil/db/livro_dao.dart';
+import 'package:livraria_brasil/modelos/livro.dart';
+import 'package:livraria_brasil/modelos/tipo_disponibilidade.dart';
 
-class LivroForm extends StatefulWidget {
-  LivroForm({Key key}) : super(key: key);
-
-  _LivroFormState createState() => _LivroFormState();
+class Formulario extends StatefulWidget {
+  @override
+  _FormularioState createState() => _FormularioState();
 }
 
-class _LivroFormState extends State<LivroForm> {
+class _FormularioState extends State<Formulario> {
+  
   final _formKey = GlobalKey<FormState>();
-
+  
   final LivroDao dao = LivroDao();
   TipoDisponibilidade _valorAtualDisponibilidades = TipoDisponibilidade.venda;
   bool _ehNacional = true;
@@ -21,10 +20,7 @@ class _LivroFormState extends State<LivroForm> {
 
   @override
   Widget build(BuildContext context) {
-    this._livro.ehNacional = this._ehNacional; // inicia com o mesmo valor
-    return Scaffold(
-      appBar: AppBar(),
-      body: SingleChildScrollView(
+    return SingleChildScrollView(
         child: Form(
           key: _formKey,
           child: Column(
@@ -70,11 +66,9 @@ class _LivroFormState extends State<LivroForm> {
             ],
           ),
         ),
-      ),
-    );
+      );
   }
-
-  String _campoObg(value) {
+   String _campoObg(value) {
     if (value.isEmpty) return 'Campo Obrigatorio';
     return null;
   }

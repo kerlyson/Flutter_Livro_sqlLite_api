@@ -19,9 +19,7 @@ class DataBase {
   static sqflite.Database _database;
 
   Future<sqflite.Database> get database async {
-    if (_database == null) {
-      _database = await initDB();
-    }
+    if (_database == null) _database = await initDB();
     return _database;
   }
 

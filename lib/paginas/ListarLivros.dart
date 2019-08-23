@@ -1,14 +1,12 @@
-import 'package:atividade_03/db/livro_dao.dart';
-import 'package:atividade_03/models/livro.dart';
 import 'package:flutter/material.dart';
+import 'package:livraria_brasil/db/livro_dao.dart';
 
-class ListaLivrosLocal extends StatefulWidget {
-  ListaLivrosLocal({Key key}) : super(key: key);
-
-  _ListaLivrosLocalState createState() => _ListaLivrosLocalState();
+class ListarLivros extends StatefulWidget {
+  @override
+  _ListarLivrosState createState() => _ListarLivrosState();
 }
 
-class _ListaLivrosLocalState extends State<ListaLivrosLocal> {
+class _ListarLivrosState extends State<ListarLivros> {
   LivroDao _dao = new LivroDao();
   @override
   Widget build(BuildContext context) {
