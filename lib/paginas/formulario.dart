@@ -23,6 +23,8 @@ class _FormularioState extends State<Formulario> {
   @override
   Widget build(BuildContext context) {
     _livro.disponibilidade = _valorAtualDisponibilidades;
+    _livro.ehNacional = _ehNacional;
+
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.all(10.0),
@@ -73,7 +75,7 @@ class _FormularioState extends State<Formulario> {
                           print(_livro.toString());
                           dao.inserir(_livro);
                           widget.callback(2);
-                          Scaffold.of(context).showSnackBar(SnackBar(content: Text('Livro inserido!')));
+                          Scaffold.of(context).showSnackBar(SnackBar(content: Text('Livro inserido!'), duration: Duration(milliseconds: 700),));
                         }
                       },
                       child: Text('Salvar'),

@@ -12,10 +12,10 @@ class LivroDao {
 
   Future<List<Livro>> getlivros() async {
     final db = await _db.database;
-    final List<Map<String, dynamic>> res = await db.query("livro");
-    print('res: ${res.toList().toString()}');
+    final List<Map<String, dynamic>> res = await db.query("livro", orderBy: 'id DESC');
+  
     List<Livro> livros = res.isNotEmpty ? res.map((livro) => Livro.fromMap(livro)).toList() : [];
-    print('get: ${livros.toList().toString()}');
+
     return Future.value(livros);
   }
 }
