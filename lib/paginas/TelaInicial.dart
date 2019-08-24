@@ -35,7 +35,7 @@ class _TelaInicialState extends State<TelaInicial> {
       iconSize: 20,
       type: BottomNavigationBarType.fixed,
       items: <BottomNavigationBarItem>[
-        BottomNavigationBarItem(icon: Icon(Icons.home), title: Text('Inicio')),
+        BottomNavigationBarItem(icon: Icon(Icons.archive), title: Text('Cadastro')),
         BottomNavigationBarItem(
             icon: Icon(Icons.http), title: Text('Lista Api')),
         BottomNavigationBarItem(    icon: Icon(Icons.library_books), title: Text('Lista BD')),
